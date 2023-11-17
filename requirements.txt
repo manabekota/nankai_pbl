@@ -1,2 +1,0 @@
-streamlit==0.89.0
-summarizer==0.9.9
