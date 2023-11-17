@@ -1,3 +1,7 @@
+!pip install langchain==0.0.301
+!pip install openai==0.28.1
+!pip3 install streamlit streamlit-chat langchain openai python-dotenv
+
 import streamlit as st
 from streamlit_chat import message
 
