@@ -8,9 +8,6 @@ def text_summarization(text):
 
 def main():
     st.markdown("# &#8203;``【忙しい方必見！】``&#8203;\n# もぎたてテレビを簡単まとめ")
-
-
-
     
 
     # テキスト入力またはファイルアップロードの選択
