@@ -22,7 +22,7 @@ def main():
     st.markdown("# &#8203;``【忙しい方必見！】``&#8203;\n# もぎたてテレビを簡単まとめ")
 
 
-    st.image(r"C:\Users\minematsu\Downloads\thum_mogitate.png", use_column_width=True)
+    st.image("thum_mogitate.png", use_column_width=True)
 
     
 
