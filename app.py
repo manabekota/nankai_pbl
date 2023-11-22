@@ -7,10 +7,7 @@ def text_summarization(text):
     return summary
 
 def main():
-    
     st.markdown("# &#8203;``【忙しい方必見！】``&#8203;\n# もぎたてテレビを簡単まとめ")
-
-
     
 
     # テキスト入力またはファイルアップロードの選択
@@ -39,4 +36,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
