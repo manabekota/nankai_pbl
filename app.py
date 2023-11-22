@@ -7,7 +7,7 @@ def text_summarization(text):
     return summary
 
 def main():
-    st.title("忙しい方必見！もぎたてテレビを簡単まとめ")
+    st.title("【忙しい方必見！】\n もぎたてテレビを簡単まとめ")
 
     # テキスト入力またはファイルアップロードの選択
     option = st.radio("テキスト入力またはファイルアップロード", ("テキスト入力", "ファイルアップロード"))
