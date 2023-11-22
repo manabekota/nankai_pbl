@@ -7,7 +7,22 @@ def text_summarization(text):
     return summary
 
 def main():
+
+    st.markdown(
+        """
+        <style>
+        body {
+            background-color: #7fff3d4; 
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+    
     st.markdown("# &#8203;``【忙しい方必見！】``&#8203;\n# もぎたてテレビを簡単まとめ")
+
+
+    st.image(""C:\Users\minematsu\Downloads\thum_mogitate.png"", use_column_width=True)
     
 
     # テキスト入力またはファイルアップロードの選択
