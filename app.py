@@ -1,5 +1,8 @@
 import streamlit as st
 
+# 要約履歴を保持するリスト
+history = []
+
 def text_summarization(text):
     # ここに要約の処理を実装する
     # 例: text を処理して要約を生成する処理
@@ -7,12 +10,11 @@ def text_summarization(text):
     return summary
 
 def main():
-
     st.markdown("# &#8203;``【忙しい方必見！】``&#8203;\n# もぎたてテレビを簡単まとめ")
-
-
     st.image("thum_mogitate.png", width=500)
-    
+
+    # 要約結果の表示部分をクリアするためのプレースホルダー
+    result_placeholder = st.empty()
 
     # テキスト入力またはファイルアップロードの選択
     option = st.radio("テキスト入力またはファイルアップロード", ("テキスト入力", "ファイルアップロード"))
@@ -33,10 +35,16 @@ def main():
     if st.button("もぎたて！"):
         # 要約処理の呼び出し
         summary = text_summarization(input_text)
+        # 要約結果を履歴に追加
+        history.append(summary)
 
         # 要約結果の表示
         st.subheader("要約結果")
         st.write(summary)
+
+    # 履歴の表示
+    st.subheader("要約履歴")
+    st.write(history)
 
 if __name__ == "__main__":
     main()
