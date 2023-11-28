@@ -12,6 +12,16 @@
 export OPENAI_API_KEY="YOUR KEY"
 ```
 
+#### リポジトリのクローン作成
+```
+git clone https://github.com/manabekota/nankai_pbl
+```
+
+#### リポジトリへ移動
+```
+cd nankai_pbl
+```
+
 #### Streamlitのインストール
 ※Python環境が整っていることを前提とします。
 ```
