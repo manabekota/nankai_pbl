@@ -35,3 +35,8 @@ streamlit hello
 ```
 pip install langchain
 ```
+
+#### OpenAIのインストール
+```
+pip install openai
+```
