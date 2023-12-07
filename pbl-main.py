@@ -39,7 +39,7 @@ def main():
             with st.chat_message('user'):
                 st.markdown(message.content)
         else:  # isinstance(message, SystemMessage):
-            st.write(こんにちは")
+            st.write("こんにちは")
     
     
 
