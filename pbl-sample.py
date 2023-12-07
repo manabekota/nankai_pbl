@@ -19,7 +19,7 @@ def main():
     # チャット履歴の初期化
     if "messages" not in st.session_state:
         st.session_state.messages = [
-            SystemMessage(content="入力された文章を300字程度に要約してください")
+            SystemMessage(content="入力された文章を200字程度に要約してください")
         ]
 
     # ユーザーの入力を監視
@@ -39,7 +39,7 @@ def main():
             with st.chat_message('user'):
                 st.markdown(message.content)
         else:  # isinstance(message, SystemMessage):
-            st.write(f"System message: {message.content}")
+            st.write(こんにちは")
     
     
 
