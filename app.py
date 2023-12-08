@@ -6,7 +6,7 @@ from langchain.schema import (SystemMessage, HumanMessage, AIMessage)
 def main():
     llm = ChatOpenAI(temperature=0)
 
-    SystemMessage(content="入力された文章を300字程度に要約してください")
+    SystemMessage(content="入力された文章を180字程度に要約してください")
 
     st.set_page_config(
         page_title="ChatGPT",
