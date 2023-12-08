@@ -5,9 +5,7 @@ from langchain.schema import (SystemMessage, HumanMessage, AIMessage)
 
 def main():
     llm = ChatOpenAI(temperature=0)
-
-    SystemMessage(content="入力された文章を180字程度に要約してください")
-
+    
     st.set_page_config(
         page_title="ChatGPT",
         # page_icon="🤗"
@@ -20,7 +18,9 @@ def main():
 
     # チャット履歴の初期化
     if "messages" not in st.session_state:
-        st.session_state.messages = [  ]
+        st.session_state.messages = [
+            SystemMessage(content="入力された文章を200字程度に要約してください")
+        ]
 
       # テキスト入力またはファイルアップロードの選択
     option = st.radio("テキスト入力またはファイルアップロード", ("テキスト入力", "ファイルアップロード"))
