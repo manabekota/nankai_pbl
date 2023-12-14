@@ -19,7 +19,7 @@ def main():
     # チャット履歴の初期化
     if "messages" not in st.session_state:
         st.session_state.messages = [
-            SystemMessage(content="入力された文章を200字程度に要約してください")
+            SystemMessage(content="入力された文章を、固有名詞を入れないで、”応募”に関する文章は除外して180字程度に要約してください")
         ]
 
     # ユーザーの入力を監視
