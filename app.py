@@ -3,7 +3,7 @@ from langchain.chat_models import ChatOpenAI
 from langchain.schema import SystemMessage, HumanMessage, AIMessage
 
 def main():
-    llm = ChatOpenAI(temperature=0)
+    llm = ChatOpenAI(temperature=0,model_name="gpt-4")
 
     col1, col2 = st.columns([2, 1])  # カラムの幅を調整
 
@@ -31,7 +31,7 @@ def main():
                 st.session_state.messages = []
                 if output_format == "SNS用":
                     st.session_state.messages.append(
-                        SystemMessage(content="入力された文章を200字程度に要約してください")
+                        SystemMessage(content="入力された文章を180字程度に要約してください")
                     )
                 elif output_format == "新聞用":
                     st.session_state.messages.append(
@@ -40,7 +40,7 @@ def main():
                 
                 # ユーザーの入力をAIに送信して応答を取得
                 st.session_state.messages.append(HumanMessage(content=user_input))
-                with st.spinner("ChatGPT is typing ..."):
+                with st.spinner("要約作成中..."):
                     response = llm(st.session_state.messages)
                 st.session_state.messages.append(AIMessage(content=response.content))
     else:
