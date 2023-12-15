@@ -4,7 +4,7 @@ from langchain.schema import (SystemMessage, HumanMessage, AIMessage)
 
 
 def main():
-    llm = ChatOpenAI(temperature=0)
+    llm = ChatOpenAI(temperature=0,model_name="gpt-4")
 
     st.set_page_config(
         page_title="ChatGPT",
