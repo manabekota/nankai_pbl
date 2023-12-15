@@ -27,13 +27,13 @@ def main():
         output_format = st.radio("出力形式を選択してください", ("SNS用", "新聞用"))
         if output_format in ("SNS用", "新聞用"):
             if st.button("要約する"):
+                # 既存の要約指示をクリアして新しい要約指示を追加
+                st.session_state.messages = []
                 if output_format == "SNS用":
-                    # 要約指示の追加
                     st.session_state.messages.append(
                         SystemMessage(content="入力された文章を200字程度に要約してください")
                     )
                 elif output_format == "新聞用":
-                    # 要約指示の追加
                     st.session_state.messages.append(
                         SystemMessage(content="入力された文章を、固有名詞を入れないで、”応募”に関する文章は除外して180字程度に要約してください")
                     )
@@ -52,13 +52,13 @@ def main():
             output_format = st.radio("要約の種類を選択してください", ("SNS用", "新聞用"))
             if output_format in ("SNS用", "新聞用"):
                 if st.button("要約する"):
+                    # 既存の要約指示をクリアして新しい要約指示を追加
+                    st.session_state.messages = []
                     if output_format == "SNS用":
-                        # 要約指示の追加
                         st.session_state.messages.append(
                             SystemMessage(content="入力された文章を200字程度に要約してください")
                         )
                     elif output_format == "新聞用":
-                        # 要約指示の追加
                         st.session_state.messages.append(
                             SystemMessage(content="入力された文章を、固有名詞を入れないで、”応募”に関する文章は除外して180字程度に要約してください")
                         )
