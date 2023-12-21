@@ -19,7 +19,6 @@ def summarize(output_format, llm, user_input):
     st.session_state.messages.append(HumanMessage(content=user_input))
     with st.spinner("ChatGPT is typing ..."):
         response = llm(st.session_state.messages)
-    cnt = len(response.cnotent)
     st.session_state.messages.append(AIMessage(content=response.content))
 
     # ファイル出力ボタン
