@@ -29,7 +29,7 @@ def summarize(output_format, llm, user_input):
     return response
 
 def main():
-    llm = ChatOpenAI(temperature=0,model_name="gpt-4")
+    llm = ChatOpenAI(temperature=0,model_name="ft:gpt-3.5-turbo-0613:manabe::8YLdYyC0")
 
     col1, col2 = st.columns([2, 1])  # カラムの幅を調整
 
