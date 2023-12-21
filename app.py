@@ -86,6 +86,8 @@ def main():
         if isinstance(message, AIMessage):
             with st.chat_message('assistant'):
                 st.markdown(message.content)
+                # 文字数を表示
+                st.write(f"文字数：{len(response.content)}")
         elif isinstance(message, HumanMessage):
             with st.chat_message('user'):
                 st.markdown(message.content)
