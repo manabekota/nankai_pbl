@@ -1,25 +1,35 @@
 import streamlit as st
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import SystemMessage, HumanMessage, AIMessage
+from langchain.prompts import PromptTemplate, FewShotPromptTemplate
 import base64
+import pandas as pd
 
 def summarize(output_format, llm, user_input):
     # 既存の要約指示をクリアして新しい要約指示を追加
     st.session_state.messages = []
+
     if output_format == "SNS用":
         st.session_state.messages.append(
-            SystemMessage(content="入力された文章を200字程度に要約してください")
+            SystemMessage(content="入力された文章を200字程度に要約してください。人の名前は入れないでください。また、最初の一文に魅力的な文章を入れてください。")
         )
+        st.session_state.messages.append(HumanMessage(content=user_input))
+        with st.spinner("ChatGPT is typing ..."):
+            response = llm(st.session_state.messages)
+
     elif output_format == "新聞用":
+        prefix, prompt_text, user_input = few_shot_prompt(user_input)
         st.session_state.messages.append(
-            SystemMessage(content="入力された文章を、固有名詞を入れないで、”応募”に関する文章は除外して180字程度に要約してください")
+            SystemMessage(content=prefix)
         )
-    
-    # ユーザーの入力をAIに送信して応答を取得
-    st.session_state.messages.append(HumanMessage(content=user_input))
-    with st.spinner("ChatGPT is typing ..."):
-        response = llm(st.session_state.messages)
+        # ユーザーの入力をAIに送信して応答を取得
+        with st.spinner("ChatGPT is typing ..."):
+            response = llm([HumanMessage(content=prompt_text)])
+        st.session_state.messages.append(HumanMessage(content=user_input))
+
+
     st.session_state.messages.append(AIMessage(content=response.content))
+
 
     # ファイル出力ボタン
     output_filename = "summary.txt"
@@ -27,6 +37,33 @@ def summarize(output_format, llm, user_input):
     st.markdown(download_link, unsafe_allow_html=True)
 
     return response
+
+def few_shot_prompt(input):
+    csv_exfile_path = 'add_dataset.csv'
+    ex_df = pd.read_csv(csv_exfile_path, delimiter=',', names=['main', 'summarize'])
+
+    examples = [
+        {"text": ex_df['main'][0], "summarize": ex_df['summarize'][0]},
+        {"text": ex_df['main'][1], "summarize": ex_df['summarize'][1]},
+    ]
+    example_formatter_template = "原稿: {text}\n要約: {summarize}"
+    example_prompt = PromptTemplate(
+        template=example_formatter_template,
+        input_variables=["text", "summarize"]
+    )
+
+    few_shot_prompt = FewShotPromptTemplate(
+        examples=examples,
+        example_prompt=example_prompt,
+        prefix="入力された文章を、固有名詞を入れないで、”応募”に関する文章は除外して180字程度に要約してください。人の名前は入れないでください。また、最初の一文に魅力的な文章を入れてください。",
+        suffix="原稿: {input}\n要約:",
+        input_variables=["input"],
+        example_separator="\n",
+    )
+    
+    prompt_text = few_shot_prompt.format(input=input)
+
+    return few_shot_prompt.prefix, prompt_text, input
 
 def main():
     llm = ChatOpenAI(temperature=0,model_name="gpt-4")
