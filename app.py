@@ -52,11 +52,14 @@ def few_shot_prompt(input):
         input_variables=["text", "summarize"]
     )
 
+    prefix="入力された文章はテレビ番組のナレーションに当たる文章です。私はこの文章を、要約して新聞に掲載したいと考えています。しかし、新聞では固有名詞を入れることが出来ないのです。さらにこの文章には本来必要のないプレゼントキャンペーンに関する文章が含まれています。あなたには入力された文章を、固有名詞を使わずに、かつ必要のない内容を含まない、4行以上5行未満の文章に要約してほしいです。要約した文章を出力する前に一度その文章の文字数が4行以上5行未満になっているか数え、超えている場合は出力する文章を変更してください。出力する文章が4行以上5行未満になるまで文章は出力せず、文字数確認の作業を繰り返し行ってください。"
+    suffix="原稿: {input}\n要約:"
+    
     few_shot_prompt = FewShotPromptTemplate(
         examples=examples,
         example_prompt=example_prompt,
-        prefix="入力された文章を、固有名詞を入れないで、”応募”に関する文章は除外して180字程度に要約してください。人の名前は入れないでください。また、最初の一文に魅力的な文章を入れてください。",
-        suffix="原稿: {input}\n要約:",
+        prefix=prefix,
+        suffix=suffix,
         input_variables=["input"],
         example_separator="\n",
     )
@@ -66,7 +69,7 @@ def few_shot_prompt(input):
     return few_shot_prompt.prefix, prompt_text, input
 
 def main():
-    llm = ChatOpenAI(temperature=0,model_name="gpt-4")
+    llm = ChatOpenAI(temperature=0,model_name="gpt-4-0125-preview")
 
     col1, col2 = st.columns([2, 1])  # カラムの幅を調整
 
