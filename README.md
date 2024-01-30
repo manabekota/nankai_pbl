@@ -4,8 +4,8 @@
 
 # 目次
 
-- [初めに](https://github.com/manabekota/nankai_pbl/blob/main/README.md#初めに)
-- [動作環境設定](https://github.com/manabekota/nankai_pbl/blob/main/README.md#動作環境設定)
+- [初めに](main#初めに)
+- [動作環境設定](#動作環境設定)
 - [実行方法](https://github.com/manabekota/nankai_pbl/blob/main/README.md#実行方法)
 - [評価記録](https://github.com/manabekota/nankai_pbl/blob/main/README.md#評価記録)
 
@@ -19,7 +19,7 @@
 
 # 動作環境設定
 
-## Streamlit、Langchain、OpenAIの利用に必要なライブラリのインストール
+Streamlit、Langchain、OpenAIの利用に必要なライブラリのインストールを行う。
 
 ### for windows
 コマンドプロンプトを開き
@@ -36,6 +36,7 @@ pip3 install streamlit langchain openai
 
 # OPENAI APIキーの取得
 - OPENAIのサイトへアクセス -> [url](https://openai.com/product)
+
 ```Get started```をクリック。
 
 アカウントの作成、またはサインインを行い、以下の画面へアクセス。
@@ -43,6 +44,7 @@ pip3 install streamlit langchain openai
 画像添付
 
 画面左のリストにあるAPI Keysをクリックし、 ```+Create new secret key``` をクリック。
+
 ※このとき得られるKEYを"YOUR KEY"とする。
 
 ### 環境変数にAPIキーを設定
@@ -55,7 +57,7 @@ export OPENAI_API_KEY="YOUR KEY"
 git clone https://github.com/manabekota/nankai_pbl
 ```
 
-## 実行方法
+# 実行方法
 
 ### リポジトリへ移動
 ```
@@ -68,7 +70,7 @@ cd nankai_pbl
 streamlit run app.py
 ```
 
-## 評価記録
+# 評価記録
 
 ### 文字数やROUGEスコアについて記録しておく。
 
