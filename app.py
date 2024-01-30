@@ -8,6 +8,7 @@ import pandas as pd
 def summarize(output_format, llm, user_input):
     # 既存の要約指示をクリアして新しい要約指示を追加
     st.session_state.messages = []
+    user_input = remove_strings(user_input)
 
     if output_format == "SNS用":
         st.session_state.messages.append(
@@ -37,6 +38,15 @@ def summarize(output_format, llm, user_input):
     st.markdown(download_link, unsafe_allow_html=True)
 
     return response
+
+def remove_strings(cell_value):
+    pattern_to_remove = re.compile(r'【Ｒ-[０-９]+】|Ｒ-[０-９]+|\n|\t|\s+')
+    strings_to_remove = ["■", "＊", " "]
+    
+    cell_value = pattern_to_remove.sub('', cell_value)
+    for string_to_remove in strings_to_remove:
+        cell_value = cell_value.replace(string_to_remove, '')
+    return cell_value
 
 def few_shot_prompt(input):
     csv_exfile_path = 'add_dataset.csv'
