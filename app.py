@@ -52,6 +52,11 @@ def few_shot_prompt(input):
     csv_exfile_path = 'add_dataset.csv'
     ex_df = pd.read_csv(csv_exfile_path, delimiter=',', names=['main', 'summarize'])
 
+    # NaNを空白文字に置き換える
+    ex_df['main'] = ex_df['main'].fillna('').astype(str)
+    # データフレームの各セルに対して削除関数を適用
+    ex_df['main'] = ex_df['main'].apply(remove_strings)
+
     examples = [
         {"text": ex_df['main'][0], "summarize": ex_df['summarize'][0]},
         {"text": ex_df['main'][1], "summarize": ex_df['summarize'][1]},
