@@ -4,10 +4,10 @@
 
 # 目次
 
-- [初めに](main#初めに)
+- [初めに](#初めに)
 - [動作環境設定](#動作環境設定)
-- [実行方法](https://github.com/manabekota/nankai_pbl/blob/main/README.md#実行方法)
-- [評価記録](https://github.com/manabekota/nankai_pbl/blob/main/README.md#評価記録)
+- [実行方法](#実行方法)
+- [評価記録](#評価記録)
 
 # 初めに
 
