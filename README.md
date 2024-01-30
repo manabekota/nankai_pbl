@@ -3,40 +3,48 @@
 - ここには成果物を再現するための説明を書くこと
 - 例えばファイルの配置場所の関係や実行環境の確認なども含める。
 
-- [Getting Started](#️-getting-started)
+- [Setup](#️-setup)
+- [run this app](#-run-this-app)
+- [score](#-score)
 
-## Getting Started
+## Setup
 
-#### 環境変数にAPIキーを設定
+### Streamlit、Langchain、OpenAIの利用に必要なライブラリのインストール
+
+#### for windows
+※Pythonをインストールし、pipコマンドが利用できることを確認してください。
+- 利用できない場合は[こちら]()
+
+```
+pip install streamlit langchain openai
+```
+#### for mac
+```
+pip3 install streamlit langchain openai
+```
+
+### 環境変数にAPIキーを設定
 ```
 export OPENAI_API_KEY="YOUR KEY"
 ```
 
-#### リポジトリのクローン作成
+### リポジトリのクローン作成
 ```
 git clone https://github.com/manabekota/nankai_pbl
 ```
 
-#### リポジトリへ移動
+## run this app
+
+### リポジトリへ移動
 ```
 cd nankai_pbl
 ```
 
-#### Streamlitのインストール
-※Python環境が整っていることを前提とします。
-```
-# install
-pip install streamlit
+### 実行
+これによりサイトが開きます。
+'''
+streamlit run app.py
+'''
 
-# 正常にインストールされたことの確認
-streamlit hello
-```
-#### Langchainのインストール
-```
-pip install langchain
-```
+## score
 
-#### OpenAIのインストール
-```
-pip install openai
-```
