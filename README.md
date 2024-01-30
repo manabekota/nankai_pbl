@@ -23,25 +23,37 @@
 #### for windows
 ※Pythonをインストールし、pipコマンドが利用できることを確認してください。
 - 利用できない場合は[こちら](https://qiita.com/celeron5576/items/9ba3588a97fea46c6946)
+```
+pip install streamlit langchain openai
+```
 
-```pip install streamlit langchain openai```
 #### for mac
-```pip3 install streamlit langchain openai```
+```
+pip3 install streamlit langchain openai
+```
 
 ### 環境変数にAPIキーを設定
-```export OPENAI_API_KEY="YOUR KEY"```
+```
+export OPENAI_API_KEY="YOUR KEY"
+```
 
 ### リポジトリのクローン作成
-```git clone https://github.com/manabekota/nankai_pbl```
+```
+git clone https://github.com/manabekota/nankai_pbl
+```
 
 ## 実行方法
 
 ### リポジトリへ移動
-```cd nankai_pbl```
+```
+cd nankai_pbl
+```
 
 ### 実行
 これによりサイトが開きます。
-```streamlit run app.py```
+```
+streamlit run app.py
+```
 
 ## 評価記録
 
