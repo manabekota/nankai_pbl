@@ -3,11 +3,11 @@
 - ここには成果物を再現するための説明を書くこと
 - 例えばファイルの配置場所の関係や実行環境の確認なども含める。
 
-- [Setup](#️-setup)
-- [run this app](#-run-this-app)
-- [score](#-score)
+- [目的](#-setup)
+- [動作環境設定](#-run-this-app)
+- [実行方法](#-score)
 
-## Setup
+## setup
 
 ### Streamlit、Langchain、OpenAIの利用に必要なライブラリのインストール
 
