@@ -4,6 +4,7 @@ from langchain.schema import SystemMessage, HumanMessage, AIMessage
 from langchain.prompts import PromptTemplate, FewShotPromptTemplate
 import base64
 import pandas as pd
+import re
 
 def summarize(output_format, llm, user_input):
     # 既存の要約指示をクリアして新しい要約指示を追加
