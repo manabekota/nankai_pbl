@@ -7,13 +7,17 @@ import pandas as pd
 import re
 
 def summarize(output_format, llm, user_input):
-    # 既存の要約指示をクリアして新しい要約指示を追加
     st.session_state.messages = []
     user_input = remove_strings(user_input)
 
     if output_format == "SNS用":
+        content_message = '''
+入力された文章はテレビ番組のナレーションに当たる文章です。私はこの文章を要約したのち、公式アカウントを利用してSNSにアップロードしたいと考えています。
+しかし、この文章には本来必要のないプレゼントキャンペーンに関する文章が含まれています。あなたには入力された文章を、見た人が内容を知りたくなるような興味の惹かれる要約文にしてください。
+ただし、SNSにアップロードするため不適切な表現をさけ、文字数制限にかからないように4行分程度の要約にしてください。
+'''
         st.session_state.messages.append(
-            SystemMessage(content="入力された文章を200字程度に要約してください。人の名前は入れないでください。また、最初の一文に魅力的な文章を入れてください。")
+            SystemMessage(content=content_message)
         )
         st.session_state.messages.append(HumanMessage(content=user_input))
         with st.spinner("ChatGPT is typing ..."):
@@ -24,7 +28,7 @@ def summarize(output_format, llm, user_input):
         st.session_state.messages.append(
             SystemMessage(content=prefix)
         )
-        # ユーザーの入力をAIに送信して応答を取得
+        # get response
         with st.spinner("ChatGPT is typing ..."):
             response = llm([HumanMessage(content=prompt_text)])
         st.session_state.messages.append(HumanMessage(content=user_input))
@@ -33,7 +37,7 @@ def summarize(output_format, llm, user_input):
     st.session_state.messages.append(AIMessage(content=response.content))
 
 
-    # ファイル出力ボタン
+    # make output file link
     output_filename = "summary.txt"
     download_link = create_download_link(response.content, output_filename)
     st.markdown(download_link, unsafe_allow_html=True)
@@ -53,9 +57,8 @@ def few_shot_prompt(input):
     csv_exfile_path = 'add_dataset.csv'
     ex_df = pd.read_csv(csv_exfile_path, delimiter=',', names=['main', 'summarize'])
 
-    # NaNを空白文字に置き換える
     ex_df['main'] = ex_df['main'].fillna('').astype(str)
-    # データフレームの各セルに対して削除関数を適用
+    # preprocess few-shot data
     ex_df['main'] = ex_df['main'].apply(remove_strings)
 
     examples = [
@@ -87,53 +90,52 @@ def few_shot_prompt(input):
 def main():
     llm = ChatOpenAI(temperature=0,model_name="gpt-4-0125-preview")
 
-    col1, col2 = st.columns([2, 1])  # カラムの幅を調整
+    col1, col2 = st.columns([2, 1])
 
     col1.markdown("# &#8203;``【番宣にすぐ利用可能！】``&#8203;")
     st.markdown("# もぎたてテレビを簡単にお伝え")
     col2.image("thum_mogitate.png", width=200)
 
-    # チャット履歴の初期化
+    # reset chatlog
     if "messages" not in st.session_state:
         st.session_state.messages = []
 
-    # テキスト入力またはファイルアップロードの選択
     st.markdown("\n\n")
+    # text or file
     option = st.radio("テキスト入力またはファイルアップロード", ("テキスト入力", "ファイルアップロード"))
 
-    output_format = None  # 初期の出力形式
+    output_format = None
 
     if option == "テキスト入力":
-        # テキスト入力
+        # text
         user_input = st.text_area("もぎたてテレビの原稿を入力してください", "")
         output_format = st.radio("出力形式を選択してください", ("SNS用", "新聞用"))
         if output_format in ("SNS用", "新聞用"):
             if st.button("要約する"):
                 response = summarize(output_format, llm, user_input)
     else:
-        # ファイルアップロード
+        # file upload
         uploaded_file = st.file_uploader("もぎたてテレビの原稿をアップロードしてください", type=["txt"])
         if uploaded_file is not None:
             file_contents = uploaded_file.read()
-            input_text = file_contents.decode("utf-8")
+            user_input = file_contents.decode("utf-8")
             output_format = st.radio("要約の種類を選択してください", ("SNS用", "新聞用"))
             if output_format in ("SNS用", "新聞用"):
                 if st.button("要約する"):
                     response = summarize(output_format, llm, user_input)
-
-    # チャット履歴の表示
+    
+    # show chatlog  
     messages = st.session_state.get('messages', [])
     for message in messages:
         if isinstance(message, AIMessage):
             with st.chat_message('assistant'):
                 st.markdown(message.content)
-                # 文字数を表示
-                st.write(f"文字数：{len(response.content)}")
+                st.write(f"文字数：{len(message.content) }")
         elif isinstance(message, HumanMessage):
             with st.chat_message('user'):
                 st.markdown(message.content)
         elif isinstance(message, SystemMessage):
-            pass  # システムメッセージは表示しない
+            pass  # pass system message
 
 def create_download_link(content, filename):
     b64 = base64.b64encode(content.encode()).decode()
