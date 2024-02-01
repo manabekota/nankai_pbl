@@ -45,12 +45,9 @@ def summarize(output_format, llm, user_input):
     return response
 
 def remove_strings(cell_value):
-    pattern_to_remove = re.compile(r'【Ｒ-[０-９]+】|Ｒ-[０-９]+|\n|\t|\s+')
-    strings_to_remove = ["■", "＊", " "]
+    pattern_to_remove = re.compile(r'【.*?】|[ＲR][ー-]\d+|\n|\t|\s+|■|＊')
     
     cell_value = pattern_to_remove.sub('', cell_value)
-    for string_to_remove in strings_to_remove:
-        cell_value = cell_value.replace(string_to_remove, '')
     return cell_value
 
 def few_shot_prompt(input):
