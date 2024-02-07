@@ -41,9 +41,9 @@ pip3 install streamlit langchain openai
 
 ```Get started```をクリック。
 
-アカウントの作成、またはサインインを行い、以下の画面左のリストにあるAPI Keysをクリック。
+アカウントの作成、またはサインインを行い、以下の画面左のリストにあるAPI keysをクリック。
 
-![api_key](https://github.com/manabekota/nankai_pbl/blob/images/api_key.png)
+![api_key](https://github.com/manabekota/nankai_pbl/blob/main/.image_dir/api_key.png)
 
 ```+Create new secret key``` をクリックし、APIキーを作成。
 
@@ -51,13 +51,13 @@ pip3 install streamlit langchain openai
 
 ### for windows
 windowsの「設定」を開いて、検索窓から「環境変数」として出てくる「環境変数を編集」を開く。
-![open_en_var](https://github.com/manabekota/nankai_pbl/blob/images/open_en_var.png)
+![open_en_var](https://github.com/manabekota/nankai_pbl/blob/main/.image_dir/open_en_var.png)
 
 環境変数のウィンドウが開いたら、上段の「ユーザー環境変数」の「新規」をクリック。
-![en_var](https://github.com/manabekota/nankai_pbl/blob/images/en_var.png)
+![en_var](https://github.com/manabekota/nankai_pbl/blob/main/.image_dir/en_var.png)
 
 変数名として例えば、「OPEN_API_KEY」、変数値は入手したAPIキー「YOUR KEY」を貼り付ける。
-![edit_en_var](https://github.com/manabekota/nankai_pbl/blob/images/edit_en_var.png)
+![edit_en_var](https://github.com/manabekota/nankai_pbl/blob/main/.image_dir/edit_en_var.png)
 
 ### for mac
 ```
