@@ -47,6 +47,14 @@ pip3 install streamlit langchain openai
 
 ※このとき得られるKEYを"YOUR KEY"とする。
 
+### for windows
+windowsの「設定」を開いて、検索窓から「環境変数」として出てくる「環境変数を編集」を開く。
+
+環境変数のウィンドウが開いたら、上段の「ユーザー環境変数」の「新規」をクリック。
+
+変数名として、「OPEN_API_KEY」、変数値は入手したAPIキーを貼り付ける。
+
+### for mac
 ### 環境変数にAPIキーを設定
 ```
 export OPENAI_API_KEY="YOUR KEY"
