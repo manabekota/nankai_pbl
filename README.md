@@ -33,8 +33,9 @@ pip install streamlit langchain openai
 ```
 pip3 install streamlit langchain openai
 ```
+# OPENAI APIキーの設定
 
-# OPENAI APIキーの取得
+## OPENAI APIキーの取得
 - OPENAIのサイトへアクセス -> [url](https://openai.com/product)
 
 ```Get started```をクリック。
@@ -47,6 +48,8 @@ pip3 install streamlit langchain openai
 
 ※このとき得られるKEYを"YOUR KEY"とする。
 
+## 環境変数にAPIキーを設定
+
 ### for windows
 windowsの「設定」を開いて、検索窓から「環境変数」として出てくる「環境変数を編集」を開く。
 
@@ -55,17 +58,16 @@ windowsの「設定」を開いて、検索窓から「環境変数」として�
 変数名として、「OPEN_API_KEY」、変数値は入手したAPIキーを貼り付ける。
 
 ### for mac
-### 環境変数にAPIキーを設定
 ```
 export OPENAI_API_KEY="YOUR KEY"
 ```
+
+# 実行方法
 
 ### リポジトリのクローン作成
 ```
 git clone https://github.com/manabekota/nankai_pbl
 ```
-
-# 実行方法
 
 ### リポジトリへ移動
 ```
