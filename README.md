@@ -67,7 +67,7 @@ export OPENAI_API_KEY="YOUR KEY"
 # 実行方法
 
 ### few-shot用データセットの準備
-few-shotの例で使用するデータを、A列に原稿、B列に教師データとして3件ずつ用意し、カンマ区切りのcsvファイル(add_dataset.csv)として保存する。
+few-shotの例で使用するデータを、A列に原稿、B列に要約として3件用意し、カンマ区切りのcsvファイル(add_dataset.csv)として保存する。
 
 ### リポジトリのクローン作成
 ```
