@@ -34,7 +34,7 @@ pip install streamlit langchain openai
 pip3 install streamlit langchain openai
 ```
 
-### OPENAI APIキーの設定
+# OPENAI APIキーの設定
 
 ## OPENAI APIキーの取得
 - OPENAIのサイトへアクセス -> [url](https://openai.com/product)
@@ -56,7 +56,7 @@ windowsの「設定」を開いて、検索窓から「環境変数」として�
 環境変数のウィンドウが開いたら、上段の「ユーザー環境変数」の「新規」をクリック。
 ![en_var](https://github.com/manabekota/nankai_pbl/blob/images/en_var.png)
 
-変数名として、「OPEN_API_KEY」、変数値は入手したAPIキーを貼り付ける。
+変数名として例えば、「OPEN_API_KEY」、変数値は入手したAPIキー「YOUR KEY」を貼り付ける。
 ![edit_en_var](https://github.com/manabekota/nankai_pbl/blob/images/edit_en_var.png)
 
 ### for mac
@@ -85,5 +85,11 @@ streamlit run app.py
 # 評価記録
 
 ### 文字数やROUGEスコアについて記録しておく。
-
-
++p：プロンプト改良
++f-n：few-shot実装（n件）
+||既存手法<br>(独自データ)|既存手法<br>(南海放送データ)|GPT|GPT<br>+p +f-2|
+|:---|:---|:---|:---|:---|
+|ROUGE-1|0.1698|0.2415|0.3598|0.3929|
+|ROUGE-2|0.0060|0.0102|0.0890|0.0945|
+|ROUGE-L|0.1128|0.1473|0.1986|0.2291|
+|文字数平均(文字)<br>評価用：192.3|72.0|182.3|244.6|192.7|
