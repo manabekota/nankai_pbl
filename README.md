@@ -66,6 +66,9 @@ export OPENAI_API_KEY="YOUR KEY"
 
 # 実行方法
 
+### few-shot用データセットの準備
+few-shotの例で使用するデータを、A列に原稿、B列に教師データとして3件ずつ用意し、カンマ区切りのcsvファイル(add_dataset.csv)として保存する。
+
 ### リポジトリのクローン作成
 ```
 git clone https://github.com/manabekota/nankai_pbl
@@ -86,6 +89,7 @@ streamlit run app.py
 
 ### 文字数やROUGEスコアについて記録しておく。
 +p：プロンプト改良
+
 +f-n：few-shot実装（n件）
 ||既存手法<br>(独自データ)|既存手法<br>(南海放送データ)|GPT|GPT<br>+p +f-2|
 |:---|:---|:---|:---|:---|
