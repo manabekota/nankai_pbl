@@ -34,38 +34,42 @@ pip install streamlit langchain openai
 pip3 install streamlit langchain openai
 ```
 
-# OPENAI APIキーの取得
+### OPENAI APIキーの設定
+
+## OPENAI APIキーの取得
 - OPENAIのサイトへアクセス -> [url](https://openai.com/product)
 
 ```Get started```をクリック。
 
-アカウントの作成、またはサインインを行い、以下の画面へアクセス。
+アカウントの作成、またはサインインを行い、以下の画面左のリストにあるAPI Keysをクリック。
 
-画像添付
+![api_key](https://github.com/manabekota/nankai_pbl/blob/images/api_key.png)
 
-画面左のリストにあるAPI Keysをクリックし、 ```+Create new secret key``` をクリック。
+```+Create new secret key``` をクリックし、APIキーを作成。
 
 ※このとき得られるKEYを"YOUR KEY"とする。
 
 ### for windows
 windowsの「設定」を開いて、検索窓から「環境変数」として出てくる「環境変数を編集」を開く。
+![open_en_var](https://github.com/manabekota/nankai_pbl/blob/images/open_en_var.png)
 
 環境変数のウィンドウが開いたら、上段の「ユーザー環境変数」の「新規」をクリック。
+![en_var](https://github.com/manabekota/nankai_pbl/blob/images/en_var.png)
 
 変数名として、「OPEN_API_KEY」、変数値は入手したAPIキーを貼り付ける。
+![edit_en_var](https://github.com/manabekota/nankai_pbl/blob/images/edit_en_var.png)
 
 ### for mac
-### 環境変数にAPIキーを設定
 ```
 export OPENAI_API_KEY="YOUR KEY"
 ```
+
+# 実行方法
 
 ### リポジトリのクローン作成
 ```
 git clone https://github.com/manabekota/nankai_pbl
 ```
-
-# 実行方法
 
 ### リポジトリへ移動
 ```
