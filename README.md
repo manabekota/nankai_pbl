@@ -1,7 +1,3 @@
-
-- ここには成果物を再現するための説明を書くこと
-- 例えばファイルの配置場所の関係や実行環境の確認なども含める。
-
 # 目次
 
 - [初めに](#初めに)
@@ -37,7 +33,7 @@ pip3 install streamlit langchain openai
 # OPENAI APIキーの設定
 
 ## OPENAI APIキーの取得
-- OPENAIのサイトへアクセス -> [url](https://openai.com/product)
+- [OPENAIのサイト](https://openai.com/product)へアクセス
 
 ```Get started```をクリック。
 
@@ -49,24 +45,48 @@ pip3 install streamlit langchain openai
 
 ※このとき得られるKEYを"YOUR KEY"とする。
 
-### for windows
+### for Windows
 windowsの「設定」を開いて、検索窓から「環境変数」として出てくる「環境変数を編集」を開く。
 ![open_en_var](https://github.com/manabekota/nankai_pbl/blob/main/.image_dir/open_en_var.png)
 
 環境変数のウィンドウが開いたら、上段の「ユーザー環境変数」の「新規」をクリック。
 ![en_var](https://github.com/manabekota/nankai_pbl/blob/main/.image_dir/en_var.png)
 
-変数名として例えば、「OPEN_API_KEY」、変数値は入手したAPIキー「YOUR KEY」を貼り付ける。
+変数名として、「OPENAI_API_KEY」、変数値は入手したAPIキー「YOUR KEY」を貼り付ける。
 ![edit_en_var](https://github.com/manabekota/nankai_pbl/blob/main/.image_dir/edit_en_var.png)
 
-### for mac
+### for Linux / MacOS
+ターミナルで以下のコマンドを実行して、**yourkey**を取得したAPIキーに置き換える。
 ```
-export OPENAI_API_KEY="YOUR KEY"
+echo "export OPENAI_API_KEY='yourkey'" >> ~/.zshrc
 ```
+
+その後、新しい変数でシェルを更新する。
+```
+source ~/.zshrc
+```
+
+その後、以下のコマンドで環境変数が設定されていることを確認する。
+```
+echo $OPENAI_API_KEY
+```
+
+表示されれば、先ほどまでの```.zshrc```を```.bash_profile```に置き換えて実行する。
+```
+echo "export OPENAI_API_KEY='yourkey'" >> ~/.bash_profile
+source ~/.bash_profile
+```
+
+## APIキーの不正利用があったときは
+OPENAIのサイトにログインすることで使用状況とその料金を監視することができる。
+APIキーの漏洩等による不正利用があった場合には[APIkeys](https://platform.openai.com/account/api-keys)ページからすぐにキーを更新して再度設定し直すようにする。
+
 
 # 実行方法
 
 ### リポジトリのクローン作成
+保存したいディレクトリの場所で以下のコマンドを実行する。
+初期設定時のみ行う。
 ```
 git clone https://github.com/manabekota/nankai_pbl
 ```
@@ -74,7 +94,9 @@ git clone https://github.com/manabekota/nankai_pbl
 ### few-shot用データセットの準備
 few-shotの例で使用するデータを、A列に原稿、B列に要約として3件用意し、カンマ区切りのcsvファイル(add_dataset.csv)として保存する。
 
-このcsvファイルを、リポジトリをクローンしたフォルダと同じフォルダに置く。
+このcsvファイルを、リポジトリをクローンしたディレクトリと同じディレクトリに置く。
+
+app.pyとadd_dataset.csvが同じディレクトリ内に存在するようにする。
 
 ### リポジトリへ移動
 ```
